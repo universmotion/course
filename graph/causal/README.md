@@ -8,3 +8,5 @@ Le cours est effectuer via R, hors ici le code est refait en python dans un doub
 - Un apprentissage plus complet,
 - Une meilleurs connaissances des packages dans ce domaine avec le langage python.
 
+Resource supplémentaire:
+- https://matheusfacure.github.io/python-causality-handbook/landing-page.html 
