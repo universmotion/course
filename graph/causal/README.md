@@ -10,3 +10,9 @@ Le cours est effectuer via R, hors ici le code est refait en python dans un doub
 
 Resource supplémentaire:
 - https://matheusfacure.github.io/python-causality-handbook/landing-page.html 
+
+Librairie python: 
+- https://github.com/py-why/dowhy
+- https://jakobrunge.github.io/tigramite/
+- https://pyagrum.readthedocs.io/en/1.17.2/index.html
+- https://fentechsolutions.github.io/CausalDiscoveryToolbox/html/index.html
