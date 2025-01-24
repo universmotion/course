@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.stats import t
-from itertools import permutations
+from itertools import combinations
+import networkx as nx
 
 def gauss_ci_test(X, Y, Z, data):
     """
@@ -100,23 +101,38 @@ def skeleton(nodes, test_func, data_frame, alpha=0.05, verbose=False):
 
     return edges
 
-def get_triplet_with_permutations(g):
+def get_triplet_with_permutations(G:nx.Graph):
     """
     Trouve tous les triplets connectés avec permutations dans un graphe non orienté.
 
     Args:
-        g (networkx.Graph): Un graphe non orienté.
+        G (networkx.Graph): Un graphe non orienté.
 
     Returns:
         list: Une liste de triplets connectés respectant les contraintes.
     """
     triplets = []
-    for u, v, w in permutations(g.nodes, 3):
-        if (u in g.neighbors(v) and w in g.neighbors(v)) and\
-            (w, v, u) not in triplets:
-            triplets.append((u, v, w))
-    
+    for n in list(G.nodes):
+        possible_combinaison = list(G.neighbors(n))
+        triplets += list([(c[0], n, c[1]) for c in combinations(possible_combinaison, 2)])
     return triplets
+
+def get_directed_triplet_with_permutations(G):
+    """
+    Trouve tous les triplets connectés avec permutations dans un graphe non orienté.
+
+    Args:
+        G (networkx.Graph): Un graphe non orienté.
+
+    Returns:
+        list: Une liste de triplets connectés respectant les contraintes.
+    """
+    triplets = []
+    for n in list(G.nodes):
+        possible_combinaison = list(G.successors(n)) + list(G.predecessors(n))
+        triplets += list([(c[0], n, c[1]) for c in combinations(possible_combinaison, 2)])
+    return triplets
+
 
 def get_oriented_edges(triplets):
     """
